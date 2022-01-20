@@ -6,7 +6,7 @@ const { randomUUID } = require("crypto");
 
 const app = express();
 const PORT = process.env.port || 3001;
-const uuid = randomUUID();
+const id = randomUUID();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -26,7 +26,7 @@ app.post("/api/notes", (req, res) => {
   const { title, text } = req.body;
 
   if (title && text) {
-    const newNote = { title, text, uuid };
+    const newNote = { title, text, id };
 
     fs.readFile("./db/db.json", "utf8", (error, data) => {
       if (error) {
@@ -48,11 +48,11 @@ app.delete("/api/notes/:id", (req, res) => {
       res.send(error);
     } else {
       const notes = JSON.parse(data);
-      const id = req.params.id;
-      const newNotesArr = notes.filter((note) => note.id !== id);
+      const newNotesArr = notes.filter((note) => note.id !== req.params.id);
       fs.writeFile("db/db.json", JSON.stringify(newNotesArr), (error) => {
         error ? console.log(error) : res.send("Success");
       });
+      console.log(req.params.id);
     }
   });
 });
