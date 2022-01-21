@@ -4,7 +4,6 @@ const path = require("path");
 const fs = require("fs");
 const res = require("express/lib/response");
 const { randomUUID } = require("crypto");
-const id = randomUUID();
 
 router.get("/api/notes", (req, res) => {
   fs.readFile(path.join(__dirname, "../db/db.json"), "utf-8", (error, data) => {
@@ -20,6 +19,7 @@ router.post("/api/notes", (req, res) => {
   const { title, text } = req.body;
 
   if (title && text) {
+    const id = randomUUID();
     const newNote = { title, text, id };
 
     fs.readFile("./db/db.json", "utf8", (error, data) => {
