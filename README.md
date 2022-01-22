@@ -9,7 +9,7 @@
 
 ## Description
 
-For this project, I have used express.js to create a note taker that people can use to write, save and delete notes to easily keep track of work. Below is a screenshot of the application and you can try out the deployed application here - https://github.com/mattglwilliams/note-taker!
+For this project, I have used express.js to create a note taker that people can use to write, save and delete notes to easily keep track of work. Below is a screenshot of the application and you can try out the deployed application here - https://matt-express-note-taker.herokuapp.com/!
 
 ![](./images/example.png)
 
